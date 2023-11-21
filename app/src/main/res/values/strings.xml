@@ -10,4 +10,8 @@
     <string name="normal_atack_image">Normal Atack Image</string>
     <string name="normal_defense_image">Normal Defense Image</string>
     <string name="normal_defense">Base Defense</string>
+    <string name="special_atack_image">Spacial Atack image</string>
+    <string name="special_atack">Special Atack</string>
+    <string name="special_shield_image">Special Shield Image</string>
+    <string name="special_shield">Special Defense</string>
 </resources>
