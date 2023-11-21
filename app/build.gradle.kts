@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.charles.pokemoncombat"
-    compileSdk = 33
+    compileSdk = 34
 
     buildFeatures {
         viewBinding = true
