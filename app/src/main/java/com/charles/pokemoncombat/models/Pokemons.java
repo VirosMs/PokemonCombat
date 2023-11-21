@@ -1,4 +1,4 @@
-package com.charles.pokemoncombat.entitys;
+package com.charles.pokemoncombat.models;
 
 public class Pokemons {
 
