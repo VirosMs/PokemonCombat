@@ -15,4 +15,9 @@
         android:name="com.charles.pokemoncombat.NewPokemon"
         android:label="fragment_new_pokemon"
         tools:layout="@layout/fragment_new_pokemon" />
+    <fragment
+        android:id="@+id/battlePokemon"
+        android:name="com.charles.pokemoncombat.BattlePokemon"
+        android:label="fragment_battle_pokemon"
+        tools:layout="@layout/fragment_battle_pokemon" />
 </navigation>

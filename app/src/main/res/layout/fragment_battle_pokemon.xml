@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BattlePokemon"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <!-- Sección superior -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Ejemplo de detalles -->
+
+
+            <TextView
+                android:id="@+id/hpTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="15dp"
+                android:layout_marginStart="228dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/hp_100"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/atackTextView1" />
+
+            <TextView
+                android:id="@+id/defenseTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/normal_defense_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/specialAtackTextView1" />
+
+
+            <!-- Derecha -->
+            <TextView
+                android:id="@+id/specialDefenseTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/pixelify_normal"
+                android:text="@string/special_defense_50"
+                android:background="@drawable/border"
+                android:padding="5dp"
+                android:layout_margin="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <TextView
+                android:id="@+id/atackTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginStart="100dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/ataque_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defenseTextView1" />
+
+            <TextView
+                android:id="@+id/specialAtackTextView1"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/special_ataque_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/specialDefenseTextView1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Nombre del Pokémon -->
+
+
+        <TextView
+            android:id="@+id/nombrePokemonTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pixelify_semibold"
+            android:text="@string/nombre_del_pok_mon"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
+
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <!-- Línea izquierda -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@color/black_pokeball"/>
+
+        <!-- Contenedor de la pokebola -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!-- Pokebola -->
+            <ImageView
+                android:id="@+id/pokebolaImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pokeball_pokemon_svgrepo_com"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/pokebool_image"/>
+
+        </RelativeLayout>
+
+        <!-- Línea derecha -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/black_pokeball"/>
+</LinearLayout>
+
+    <!-- Sección inferior -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Nombre del Pokémon -->
+        <TextView
+            android:id="@+id/nombrePokemonTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pixelify_semibold"
+            android:text="@string/nombre_del_pok_mon"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Ejemplo de detalles -->
+
+
+            <TextView
+                android:id="@+id/hpTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/hp_100"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/defenseTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/normal_defense_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/atackTextView2" />
+
+
+            <!-- Derecha -->
+            <TextView
+                android:id="@+id/specialDefenseTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/special_defense_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/specialAtackTextView2" />
+
+            <TextView
+                android:id="@+id/atackTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/ataque_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hpTextView2" />
+
+            <TextView
+                android:id="@+id/specialAtackTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/border"
+                android:fontFamily="@font/pixelify_normal"
+                android:padding="5dp"
+                android:text="@string/special_ataque_50"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defenseTextView2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Agrega más detalles según sea necesario -->
+
+    </LinearLayout>
+
+
+</LinearLayout>
