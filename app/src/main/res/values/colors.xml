@@ -13,5 +13,7 @@
     <color name="red">#E41405</color>
     <color name="red_light">#FF8B0000</color>
     <color name="soft_red">#FFB22222</color>
+    <color name="pokeball_soft_red"> #f37484</color>
+    <color name="gold">#FFD4AF37</color>
 
 </resources>

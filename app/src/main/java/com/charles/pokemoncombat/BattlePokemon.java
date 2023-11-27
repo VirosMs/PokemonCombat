@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.charles.pokemoncombat.databinding.FragmentBattlePokemonBinding;
 import com.charles.pokemoncombat.models.PokemonModelView;
+
+import java.util.Objects;
 
 
 public class BattlePokemon extends Fragment {
@@ -59,16 +62,16 @@ public class BattlePokemon extends Fragment {
             binding.pokebolaImageView.setOnClickListener(v -> pokemonModelView.combatPokemon());
 
             pokemonModelView.getPokemonAttack().observe(getViewLifecycleOwner(), pokemonAttack -> {
-                binding.pokebolaImageView.setImageResource(R.drawable.fight_svgrepo_com);
+                setDefaultLayout();
 
-                binding.lineaIzquierda.setVisibility(View.GONE);
-                binding.lineaDerecha.setVisibility(View.GONE);
+
                 if (pokemonAttack) {
                     binding.nombrePokemonTextView1.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
                     binding.nombrePokemonTextView2.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
                     binding.hpTextView2.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
                     binding.hpTextView1.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
                 } else {
+
                     binding.nombrePokemonTextView1.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
                     binding.nombrePokemonTextView2.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
                     binding.hpTextView1.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
@@ -79,9 +82,7 @@ public class BattlePokemon extends Fragment {
             pokemonModelView.getCombatFinished().observe(getViewLifecycleOwner(), combatFinished -> {
                 if (combatFinished) {
                     Toast.makeText(requireContext(), "Combate finalizado", Toast.LENGTH_SHORT).show();
-                    binding.pokebolaImageView.setImageResource(R.drawable.pokeball_pokemon_svgrepo_com);
-                    binding.lineaIzquierda.setVisibility(View.VISIBLE);
-                    binding.lineaDerecha.setVisibility(View.VISIBLE);
+                    setWinner();
                 }
             });
 
@@ -92,7 +93,45 @@ public class BattlePokemon extends Fragment {
             binding.battleStartButton.setVisibility(View.GONE);
             Toast.makeText(requireContext(), "No hay pokemons", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setWinner() {
+
+        binding.pokebolaImageView.setImageResource(R.drawable.trophy_svgrepo_com);
+        if (Objects.requireNonNull(PokemonModelView.pokemon1.getValue()).getHealth() >
+                Objects.requireNonNull(PokemonModelView.pokemon2.getValue()).getHealth()) {
+
+            binding.nombrePokemonTextView2.setVisibility(View.GONE);
+
+            binding.nombrePokemonTextView1.setTextColor(
+                    getResources().getColor(R.color.gold, this.requireActivity().getTheme()));
+            binding.nombrePokemonTextView1.setTextSize(30);
+            binding.nombrePokemonTextView1.setAllCaps(true);
+        } else {
+
+            binding.nombrePokemonTextView1.setVisibility(View.GONE);
+            binding.nombrePokemonTextView2.setTextColor(
+                    getResources().getColor(R.color.gold, this.requireActivity().getTheme()));
+            binding.nombrePokemonTextView2.setTextSize(30);
+            binding.nombrePokemonTextView2.setAllCaps(true);
+        }
+
+    }
+
+    private void setDefaultLayout() {
+        binding.pokebolaImageView.setImageResource(R.drawable.fight_svgrepo_com);
 
 
+        binding.lineaIzquierda.setVisibility(View.GONE);
+        binding.lineaDerecha.setVisibility(View.GONE);
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        params.addRule(RelativeLayout.ALIGN_PARENT_START, RelativeLayout.TRUE);
+        params.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE);
+        binding.pokebolaImageView.setLayoutParams(params);
     }
 }

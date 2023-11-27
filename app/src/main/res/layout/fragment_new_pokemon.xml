@@ -6,15 +6,17 @@
     android:orientation="vertical"
     android:padding="30dp"
     tools:context=".NewPokemon"
-    android:background="@color/grey_light">
+    android:background="@color/pokeball_soft_red">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:fontFamily="@font/pixelify_semibold"
         android:text="@string/new_pokemon"
+        android:textColor="@color/black"
         android:textSize="50sp" />
 
     <LinearLayout
@@ -231,7 +233,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/grey_light"
+        android:backgroundTint="@android:color/transparent"
         android:contentDescription="@string/add_pokemon"
         android:fontFamily="@font/pixelife_bold"
         android:text="@string/add_pokemon"

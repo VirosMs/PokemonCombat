@@ -82,6 +82,7 @@ public class PokemonModel {
 
     public Pokemons combatPokemon(Pokemons attacker, Pokemons defender) {
         int probabilitySpecialAttack = (int) (Math.random() * 10 + 1);
+        int probabilityAttack = (int) (Math.random() * 10 + 1);
         int healthAfterAttack = defender.getHealth();
 
         try{
@@ -96,6 +97,8 @@ public class PokemonModel {
             }
         } else {
             if(attacker.getAttack() > defender.getDefense()) {
+                healthAfterAttack = defender.getHealth() - (attacker.getAttack() - defender.getDefense());
+            } else if (probabilityAttack > 7) {
                 healthAfterAttack = defender.getHealth() - (attacker.getAttack() - defender.getDefense());
             }
         }
