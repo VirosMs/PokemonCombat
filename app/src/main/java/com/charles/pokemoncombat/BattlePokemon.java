@@ -1,64 +1,85 @@
 package com.charles.pokemoncombat;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BattlePokemon#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.charles.pokemoncombat.databinding.FragmentBattlePokemonBinding;
+import com.charles.pokemoncombat.models.PokemonModelView;
+
+
 public class BattlePokemon extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public BattlePokemon() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BattlePokemon.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BattlePokemon newInstance(String param1, String param2) {
-        BattlePokemon fragment = new BattlePokemon();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private FragmentBattlePokemonBinding binding;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_battle_pokemon, container, false);
+        return (binding = FragmentBattlePokemonBinding.inflate(inflater, container, false))
+                .getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final PokemonModelView pokemonModelView = new ViewModelProvider(this)
+                .get(PokemonModelView.class);
+
+        if (PokemonModelView.pokemon1.getValue() != null && PokemonModelView.pokemon2.getValue() != null) {
+
+
+            PokemonModelView.pokemon1.observe(getViewLifecycleOwner(), pokemons -> {
+                binding.nombrePokemonTextView1.setText(pokemons.getName());
+                binding.hpTextView1.setText(pokemons.getHealthString());
+                binding.atackTextView1.setText(pokemons.getAttackString());
+                binding.defenseTextView1.setText(pokemons.getDefenseString());
+                binding.specialAtackTextView1.setText(pokemons.getSpecialAttackString());
+                binding.specialDefenseTextView1.setText(pokemons.getSpecialDefenseString());
+
+            });
+            PokemonModelView.pokemon2.observe(getViewLifecycleOwner(), pokemons -> {
+                binding.nombrePokemonTextView2.setText(pokemons.getName());
+                binding.hpTextView2.setText(pokemons.getHealthString());
+                binding.atackTextView2.setText(pokemons.getAttackString());
+                binding.defenseTextView2.setText(pokemons.getDefenseString());
+                binding.specialAtackTextView2.setText(pokemons.getSpecialAttackString());
+                binding.specialDefenseTextView2.setText(pokemons.getSpecialDefenseString());
+            });
+            binding.battleStartButton.setOnClickListener(v -> pokemonModelView.combatPokemon());
+
+            pokemonModelView.getPokemonAttack().observe(getViewLifecycleOwner(), pokemonAttack -> {
+                if (pokemonAttack) {
+                    binding.nombrePokemonTextView1.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
+                    binding.nombrePokemonTextView2.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
+                } else {
+                    binding.nombrePokemonTextView1.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
+                    binding.nombrePokemonTextView2.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
+                }
+            });
+
+            pokemonModelView.getCombatFinished().observe(getViewLifecycleOwner(), combatFinished -> {
+                if (combatFinished) {
+                    Toast.makeText(requireContext(), "Combate finalizado", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+        } else {
+            binding.nombrePokemonTextView1.setVisibility(View.GONE);
+            binding.nombrePokemonTextView2.setVisibility(View.GONE);
+            binding.battleStartButton.setVisibility(View.GONE);
+            Toast.makeText(requireContext(), "No hay pokemons", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }

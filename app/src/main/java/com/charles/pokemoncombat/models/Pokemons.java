@@ -1,6 +1,8 @@
 package com.charles.pokemoncombat.models;
 
 
+import androidx.annotation.NonNull;
+
 public class Pokemons {
 
     private String name;
@@ -30,6 +32,9 @@ public class Pokemons {
     public int getHealth() {
         return health;
     }
+    public String getHealthString() {
+        return "HP: " + health;
+    }
 
     public void setHealth(int health) {
         this.health = health;
@@ -37,6 +42,10 @@ public class Pokemons {
 
     public int getAttack() {
         return attack;
+    }
+
+    public String getAttackString() {
+        return "ATK: " + attack;
     }
 
     public void setAttack(int attack) {
@@ -47,12 +56,20 @@ public class Pokemons {
         return defense;
     }
 
+    public String getDefenseString() {
+        return "DEF: " + defense;
+    }
+
     public void setDefense(int defense) {
         this.defense = defense;
     }
 
     public int getSpecialAttack() {
         return specialAttack;
+    }
+
+    public String getSpecialAttackString() {
+        return "SATK: " + specialAttack;
     }
 
     public void setSpecialAttack(int specialAttack) {
@@ -63,13 +80,20 @@ public class Pokemons {
         return specialDefense;
     }
 
-    public void setSpecialDefense(int specialDefense) {
-        this.specialDefense = specialDefense;
+    public String getSpecialDefenseString() {
+        return "SDEF: " + specialDefense;
     }
 
-
-
-    public boolean validateStatus(int status) {
-        return status >= 0 && status <= 999;
+    @NonNull
+    @Override
+    public String toString() {
+        return "Pokemons{" +
+                "name='" + name + '\'' +
+                ", health=" + health +
+                ", attack=" + attack +
+                ", defense=" + defense +
+                ", specialAttack=" + specialAttack +
+                ", specialDefense=" + specialDefense +
+                '}';
     }
 }

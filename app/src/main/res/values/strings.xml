@@ -24,4 +24,5 @@
     <string name="normal_defense_50">Defense: 50</string>
     <string name="special_defense_50">Special Defense: 50</string>
     <string name="special_ataque_50">Special Atack: 50</string>
+    <string name="add_pokemon">ADD POKEMON</string>
 </resources>

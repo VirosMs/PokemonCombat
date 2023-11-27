@@ -16,6 +16,19 @@ public class PokemonModelView extends AndroidViewModel {
     int putPokemon = 0;
     MutableLiveData<String> onNameError = new MutableLiveData<>();
     MutableLiveData<Integer> onHealthError = new MutableLiveData<>();
+
+    public MutableLiveData<String> getOnNameError() {
+        return onNameError;
+    }
+
+    public void setOnNameError(MutableLiveData<String> onNameError) {
+        this.onNameError = onNameError;
+    }
+
+    public MutableLiveData<Integer> getOnHealthError() {
+        return onHealthError;
+    }
+
     MutableLiveData<Integer> onAttackError = new MutableLiveData<>();
     MutableLiveData<Integer> onDefenseError = new MutableLiveData<>();
     MutableLiveData<Integer> onSpecialAttackError = new MutableLiveData<>();
@@ -23,6 +36,7 @@ public class PokemonModelView extends AndroidViewModel {
     MutableLiveData<Boolean> onPokemonCreation = new MutableLiveData<>();
     MutableLiveData<Boolean> pokemonAttack = new MutableLiveData<>();
     MutableLiveData<Boolean> combatFinished = new MutableLiveData<>();
+    MutableLiveData<Boolean> calculate = new MutableLiveData<>();
 
     PokemonModel pokemonModel;
 
@@ -126,5 +140,64 @@ public class PokemonModelView extends AndroidViewModel {
 
            combatFinished.postValue(true);
        });
+    }
+    public void setOnHealthError(MutableLiveData<Integer> onHealthError) {
+        this.onHealthError = onHealthError;
+    }
+
+    public MutableLiveData<Integer> getOnAttackError() {
+        return onAttackError;
+    }
+
+    public void setOnAttackError(MutableLiveData<Integer> onAttackError) {
+        this.onAttackError = onAttackError;
+    }
+
+    public MutableLiveData<Integer> getOnDefenseError() {
+        return onDefenseError;
+    }
+
+    public void setOnDefenseError(MutableLiveData<Integer> onDefenseError) {
+        this.onDefenseError = onDefenseError;
+    }
+
+    public MutableLiveData<Integer> getOnSpecialAttackError() {
+        return onSpecialAttackError;
+    }
+
+    public void setOnSpecialAttackError(MutableLiveData<Integer> onSpecialAttackError) {
+        this.onSpecialAttackError = onSpecialAttackError;
+    }
+
+    public MutableLiveData<Integer> getOnSpecialDefenseError() {
+        return onSpecialDefenseError;
+    }
+
+    public void setOnSpecialDefenseError(MutableLiveData<Integer> onSpecialDefenseError) {
+        this.onSpecialDefenseError = onSpecialDefenseError;
+    }
+
+    public MutableLiveData<Boolean> getOnPokemonCreation() {
+        return onPokemonCreation;
+    }
+
+    public void setOnPokemonCreation(MutableLiveData<Boolean> onPokemonCreation) {
+        this.onPokemonCreation = onPokemonCreation;
+    }
+
+    public MutableLiveData<Boolean> getPokemonAttack() {
+        return pokemonAttack;
+    }
+
+    public void setPokemonAttack(MutableLiveData<Boolean> pokemonAttack) {
+        this.pokemonAttack = pokemonAttack;
+    }
+
+    public MutableLiveData<Boolean> getCombatFinished() {
+        return combatFinished;
+    }
+
+    public void setCombatFinished(MutableLiveData<Boolean> combatFinished) {
+        this.combatFinished = combatFinished;
     }
 }

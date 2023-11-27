@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".NewPokemon">
+    tools:context=".NewPokemon"
+    android:background="@color/grey_light">
 
 
     <TextView
@@ -36,14 +37,18 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="0.8">
+            android:layout_weight="0.8"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/playerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/pokemon_name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:fontFamily="@font/pixelify_medium"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -74,8 +79,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hp"
-
-                android:inputType="number" />
+                android:inputType="number"
+                android:fontFamily="@font/pixelify_medium"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -105,7 +112,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/atack_normal"
-                android:inputType="number" />
+                android:inputType="number"
+                android:fontFamily="@font/pixelify_medium"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -135,7 +145,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/normal_defense"
-                android:inputType="number" />
+                android:inputType="number"
+                android:fontFamily="@font/pixelify_medium"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -165,7 +178,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/special_atack"
-                android:inputType="number" />
+                android:inputType="number"
+                android:fontFamily="@font/pixelify_medium"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -194,8 +210,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/special_shield"
-                android:inputType="number" />
+                android:inputType="number"
+                android:fontFamily="@font/pixelify_medium"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/calculateProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:scrollbarSize="15dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/addPokemonButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/grey_light"
+        android:contentDescription="@string/add_pokemon"
+        android:fontFamily="@font/pixelife_bold"
+        android:text="@string/add_pokemon"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
 </LinearLayout>

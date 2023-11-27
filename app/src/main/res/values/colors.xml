@@ -10,5 +10,8 @@
     <color name="dark_blue">#FF00008B</color>
     <color name="dark_blue_light">#FF0000CD</color>
     <color name="soft_blue">#FF6495ED</color>
+    <color name="red">#E41405</color>
+    <color name="red_light">#FF8B0000</color>
+    <color name="soft_red">#FFB22222</color>
 
 </resources>
