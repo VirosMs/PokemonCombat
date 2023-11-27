@@ -79,4 +79,33 @@ public class PokemonModel {
 
         callback.onPokemonCreationEnd();
     }
+
+    public Pokemons combatPokemon(Pokemons attacker, Pokemons defender) {
+        int probabilitySpecialAttack = (int) (Math.random() * 10 + 1);
+        int healthAfterAttack = defender.getHealth();
+
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.getMessage();
+        }
+
+        if(probabilitySpecialAttack <= 4) {
+            if(attacker.getSpecialAttack() > defender.getSpecialDefense()) {
+                healthAfterAttack = defender.getHealth() - (attacker.getSpecialAttack() - defender.getSpecialDefense());
+            }
+        } else {
+            if(attacker.getAttack() > defender.getDefense()) {
+                healthAfterAttack = defender.getHealth() - (attacker.getAttack() - defender.getDefense());
+            }
+        }
+
+        if (healthAfterAttack < 0) {
+            healthAfterAttack = 0;
+        }
+
+        defender.setHealth(healthAfterAttack);
+
+        return defender;
+    }
 }
