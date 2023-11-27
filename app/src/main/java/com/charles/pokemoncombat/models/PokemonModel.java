@@ -3,7 +3,7 @@ package com.charles.pokemoncombat.models;
 public class PokemonModel {
 
     interface PokemonCreationCallback {
-        void onPokemonCreated(Pokemons pokemon);
+        void onPokemonCreating(Pokemons pokemon);
         void onNameError(String error);
         void onHealthError(int minHealth, int maxHealth);
         void onAttackError(int minAttack, int maxAttack);
@@ -74,7 +74,7 @@ public class PokemonModel {
         }
 
         if(!error) {
-            callback.onPokemonCreated(pokemons);
+            callback.onPokemonCreating(pokemons);
         }
 
         callback.onPokemonCreationEnd();
