@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -123,19 +124,17 @@ public class PokemonModelView extends AndroidViewModel {
            boolean pokemonAttacker = true;
            pokemonAttack.postValue(true);
 
-           while(pokemon1.getValue().getHealth() > 0 && pokemon2.getValue().getHealth() > 0){
+           while(Objects.requireNonNull(pokemon1.getValue()).getHealth() > 0 && Objects.requireNonNull(pokemon2.getValue()).getHealth() > 0){
                if(pokemonAttacker){
                    pokemon2.getValue().setHealth(pokemon2.getValue().getHealth() - pokemon1.getValue().getAttack());
+                   pokemonAttack.postValue(false);
                    pokemonAttacker = false;
                } else {
                    pokemon1.getValue().setHealth(pokemon1.getValue().getHealth() - pokemon2.getValue().getAttack());
+                   pokemonAttack.postValue(true);
                    pokemonAttacker = true;
                }
-               try{
-                   Thread.sleep(1000);
-               }catch (InterruptedException e){
-                   e.printStackTrace();
-               }
+
            }
 
            combatFinished.postValue(true);
