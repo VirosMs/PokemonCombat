@@ -54,21 +54,34 @@ public class BattlePokemon extends Fragment {
                 binding.specialAtackTextView2.setText(pokemons.getSpecialAttackString());
                 binding.specialDefenseTextView2.setText(pokemons.getSpecialDefenseString());
             });
-            binding.battleStartButton.setOnClickListener(v -> pokemonModelView.combatPokemon());
+
+
+            binding.pokebolaImageView.setOnClickListener(v -> pokemonModelView.combatPokemon());
 
             pokemonModelView.getPokemonAttack().observe(getViewLifecycleOwner(), pokemonAttack -> {
+                binding.pokebolaImageView.setImageResource(R.drawable.fight_svgrepo_com);
+
+                binding.lineaIzquierda.setVisibility(View.GONE);
+                binding.lineaDerecha.setVisibility(View.GONE);
                 if (pokemonAttack) {
                     binding.nombrePokemonTextView1.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
                     binding.nombrePokemonTextView2.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
+                    binding.hpTextView2.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
+                    binding.hpTextView1.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
                 } else {
                     binding.nombrePokemonTextView1.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
                     binding.nombrePokemonTextView2.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
+                    binding.hpTextView1.setTextColor(getResources().getColor(R.color.red, this.requireActivity().getTheme()));
+                    binding.hpTextView2.setTextColor(getResources().getColor(R.color.soft_blue, this.requireActivity().getTheme()));
                 }
             });
 
             pokemonModelView.getCombatFinished().observe(getViewLifecycleOwner(), combatFinished -> {
                 if (combatFinished) {
                     Toast.makeText(requireContext(), "Combate finalizado", Toast.LENGTH_SHORT).show();
+                    binding.pokebolaImageView.setImageResource(R.drawable.pokeball_pokemon_svgrepo_com);
+                    binding.lineaIzquierda.setVisibility(View.VISIBLE);
+                    binding.lineaDerecha.setVisibility(View.VISIBLE);
                 }
             });
 

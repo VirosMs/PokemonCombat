@@ -129,6 +129,7 @@
         android:layout_height="wrap_content">
         <!-- Línea izquierda -->
         <View
+            android:id="@+id/lineaIzquierda"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
@@ -154,6 +155,7 @@
 
         <!-- Línea derecha -->
         <View
+            android:id="@+id/lineaDerecha"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_gravity="center"

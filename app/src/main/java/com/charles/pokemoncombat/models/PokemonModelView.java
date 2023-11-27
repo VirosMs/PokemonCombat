@@ -17,6 +17,22 @@ public class PokemonModelView extends AndroidViewModel {
     int putPokemon = 0;
     MutableLiveData<String> onNameError = new MutableLiveData<>();
     MutableLiveData<Integer> onHealthError = new MutableLiveData<>();
+    MutableLiveData<Integer> onAttackError = new MutableLiveData<>();
+    MutableLiveData<Integer> onDefenseError = new MutableLiveData<>();
+    MutableLiveData<Integer> onSpecialAttackError = new MutableLiveData<>();
+    MutableLiveData<Integer> onSpecialDefenseError = new MutableLiveData<>();
+    MutableLiveData<Boolean> onPokemonCreation = new MutableLiveData<>();
+    MutableLiveData<Boolean> pokemonAttack = new MutableLiveData<>();
+    MutableLiveData<Boolean> combatFinished = new MutableLiveData<>();
+    MutableLiveData<Boolean> calculate = new MutableLiveData<>();
+    PokemonModel pokemonModel;
+    Executor executor;
+    public PokemonModelView(@NonNull Application application) {
+        super(application);
+
+        executor = Executors.newSingleThreadExecutor();
+        pokemonModel = new PokemonModel();
+    }
 
     public MutableLiveData<String> getOnNameError() {
         return onNameError;
@@ -30,27 +46,11 @@ public class PokemonModelView extends AndroidViewModel {
         return onHealthError;
     }
 
-    MutableLiveData<Integer> onAttackError = new MutableLiveData<>();
-    MutableLiveData<Integer> onDefenseError = new MutableLiveData<>();
-    MutableLiveData<Integer> onSpecialAttackError = new MutableLiveData<>();
-    MutableLiveData<Integer> onSpecialDefenseError = new MutableLiveData<>();
-    MutableLiveData<Boolean> onPokemonCreation = new MutableLiveData<>();
-    MutableLiveData<Boolean> pokemonAttack = new MutableLiveData<>();
-    MutableLiveData<Boolean> combatFinished = new MutableLiveData<>();
-    MutableLiveData<Boolean> calculate = new MutableLiveData<>();
-
-    PokemonModel pokemonModel;
-
-    Executor executor;
-
-    public PokemonModelView(@NonNull Application application) {
-        super(application);
-
-        executor = Executors.newSingleThreadExecutor();
-        pokemonModel = new PokemonModel();
+    public void setOnHealthError(MutableLiveData<Integer> onHealthError) {
+        this.onHealthError = onHealthError;
     }
 
-    public void addPokemon(String name, int hp, int attack, int defense, int specialAttack, int specialDefense){
+    public void addPokemon(String name, int hp, int attack, int defense, int specialAttack, int specialDefense) {
         final Pokemons pokemons = new Pokemons(name, hp, attack, defense, specialAttack, specialDefense);
 
         executor.execute(() -> pokemonModel.addPokemon(pokemons, new PokemonModel.PokemonCreationCallback() {
@@ -68,10 +68,10 @@ public class PokemonModelView extends AndroidViewModel {
                 onSpecialAttackError.postValue(null);
                 onSpecialDefenseError.postValue(null);
 
-                if(putPokemon == 0){
+                if (putPokemon == 0) {
                     pokemon1.postValue(pokemon);
                     putPokemon++;
-                } else if(putPokemon == 1){
+                } else if (putPokemon == 1) {
                     pokemon2.postValue(pokemon);
                     putPokemon = 0;
                 }
@@ -119,29 +119,32 @@ public class PokemonModelView extends AndroidViewModel {
         }));
     }
 
-    public void combatPokemon(){
-       executor.execute(() -> {
-           boolean pokemonAttacker = true;
-           pokemonAttack.postValue(true);
+    public void combatPokemon() {
+        executor.execute(() -> {
+            boolean pokemonAttacker = true;
+            pokemonAttack.postValue(true);
 
-           while(Objects.requireNonNull(pokemon1.getValue()).getHealth() > 0 && Objects.requireNonNull(pokemon2.getValue()).getHealth() > 0){
-               if(pokemonAttacker){
-                   pokemon2.getValue().setHealth(pokemon2.getValue().getHealth() - pokemon1.getValue().getAttack());
-                   pokemonAttack.postValue(false);
-                   pokemonAttacker = false;
-               } else {
-                   pokemon1.getValue().setHealth(pokemon1.getValue().getHealth() - pokemon2.getValue().getAttack());
-                   pokemonAttack.postValue(true);
-                   pokemonAttacker = true;
-               }
+            while (Objects.requireNonNull(pokemon1.getValue()).getHealth() > 0 && Objects.requireNonNull(pokemon2.getValue()).getHealth() > 0) {
+                if (pokemonAttacker) {
+                    pokemon2.postValue(pokemonModel.combatPokemon(pokemon1.getValue(), pokemon2.getValue()));
+                    pokemonAttack.postValue(false);
+                    pokemonAttacker = false;
+                } else {
+                    pokemon1.postValue(pokemonModel.combatPokemon(pokemon2.getValue(), pokemon1.getValue()));
+                    pokemonAttack.postValue(true);
+                    pokemonAttacker = true;
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
 
-           }
+                }
 
-           combatFinished.postValue(true);
-       });
-    }
-    public void setOnHealthError(MutableLiveData<Integer> onHealthError) {
-        this.onHealthError = onHealthError;
+            }
+
+            combatFinished.postValue(true);
+        });
     }
 
     public MutableLiveData<Integer> getOnAttackError() {
