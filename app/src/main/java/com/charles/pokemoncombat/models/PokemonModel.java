@@ -47,5 +47,36 @@ public class PokemonModel {
             callback.onNameError("Name must be a string");
             error = true;
         }
+
+        if(pokemons.getHealth() < minHealth || pokemons.getHealth() > maxHealth) {
+            callback.onHealthError(minHealth, maxHealth);
+            error = true;
+        }
+
+        if(pokemons.getAttack() < minAttack || pokemons.getAttack() > maxAttack) {
+            callback.onAttackError(minAttack, maxAttack);
+            error = true;
+        }
+
+        if(pokemons.getDefense() < minDefense || pokemons.getDefense() > maxDefense) {
+            callback.onDefenseError(minDefense, maxDefense);
+            error = true;
+        }
+
+        if(pokemons.getSpecialAttack() < minSpecialAttack || pokemons.getSpecialAttack() > maxSpecialAttack) {
+            callback.onSpecialAttackError(minSpecialAttack, maxSpecialAttack);
+            error = true;
+        }
+
+        if(pokemons.getSpecialDefense() < minSpecialDefense || pokemons.getSpecialDefense() > maxSpecialDefense) {
+            callback.onSpecialDefenseError(minSpecialDefense, maxSpecialDefense);
+            error = true;
+        }
+
+        if(!error) {
+            callback.onPokemonCreated(pokemons);
+        }
+
+        callback.onPokemonCreationEnd();
     }
 }
