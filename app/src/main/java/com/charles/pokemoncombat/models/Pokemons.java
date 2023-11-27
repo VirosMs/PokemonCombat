@@ -1,83 +1,73 @@
 package com.charles.pokemoncombat.models;
 
+
 public class Pokemons {
 
-    private String nombre;
-    private int hp;
-    private int ataque;
-    private int defensa;
-    private int ataqueEspecial;
-    private int defensaEspecial;
+    private String name;
+    private int health;
+    private int attack;
+    private int defense;
+    private int specialAttack;
+    private int specialDefense;
 
-    public Pokemons(String nombre, int hp, int ataque, int defensa, int ataqueEspecial, int defensaEspecial) {
-        this.nombre = nombre;
-        setHp(hp);
-        setAtaque(ataque);
-        setDefensa(defensa);
-        setAtaqueEspecial(ataqueEspecial);
-        setDefensaEspecial(defensaEspecial);
+    public Pokemons(String name, int Health, int attack, int defense, int specialAttack, int specialDefense) {
+        this.name = name;
+        this.health = Health;
+        this.attack = attack;
+        this.defense = defense;
+        this.specialAttack = specialAttack;
+        this.specialDefense = specialDefense;
     }
 
-    public int getHp() {
-        return hp;
+    public String getName() {
+        return name;
     }
 
-    public void setHp(int hp) {
-        if (validateStatus(hp)) {
-            this.hp = hp;
-        }else {
-            this.hp = 0;
-        }
-
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getAtaque() {
-        return ataque;
+    public int getHealth() {
+        return health;
     }
 
-    public void setAtaque(int ataque) {
-        if (validateStatus(ataque)) {
-            this.ataque = ataque;
-        }else {
-            this.ataque = 0;
-        }
+    public void setHealth(int health) {
+        this.health = health;
     }
 
-    public int getDefensa() {
-        return defensa;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setDefensa(int defensa) {
-        if (validateStatus(defensa)) {
-            this.defensa = defensa;
-        }else {
-            this.defensa = 0;
-        }
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
-    public int getAtaqueEspecial() {
-        return ataqueEspecial;
+    public int getDefense() {
+        return defense;
     }
 
-    public void setAtaqueEspecial(int ataqueEspecial) {
-        if (validateStatus(ataqueEspecial)) {
-            this.ataqueEspecial = ataqueEspecial;
-        }else {
-            this.ataqueEspecial = 0;
-        }
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
-    public int getDefensaEspecial() {
-        return defensaEspecial;
+    public int getSpecialAttack() {
+        return specialAttack;
     }
 
-    public void setDefensaEspecial(int defensaEspecial) {
-        if (validateStatus(defensaEspecial)) {
-            this.defensaEspecial = defensaEspecial;
-        }else {
-            this.defensaEspecial = 0;
-        }
+    public void setSpecialAttack(int specialAttack) {
+        this.specialAttack = specialAttack;
     }
+
+    public int getSpecialDefense() {
+        return specialDefense;
+    }
+
+    public void setSpecialDefense(int specialDefense) {
+        this.specialDefense = specialDefense;
+    }
+
+
 
     public boolean validateStatus(int status) {
         return status >= 0 && status <= 999;
